@@ -1,4 +1,7 @@
-
+using Identity.Domain.Comman;
+using Identity.Infrastructure;
+using Identity.Infrastructure.Repository;
+using Microsoft.EntityFrameworkCore;
 namespace Identity.Api
 {
     public class Program
@@ -12,7 +15,9 @@ namespace Identity.Api
             builder.Services.AddControllers();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
-
+            builder.Services.AddDbContext<IdentityDbContext>(options =>
+                  options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
