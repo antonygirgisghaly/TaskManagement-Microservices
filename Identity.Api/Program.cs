@@ -1,6 +1,10 @@
+using Identity.Application.Interfaces;
 using Identity.Domain.Comman;
 using Identity.Infrastructure;
+using Identity.Infrastructure.Interfaces;
 using Identity.Infrastructure.Repository;
+using Identity.Infrastructure.Settings;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 namespace Identity.Api
 {
@@ -18,6 +22,9 @@ namespace Identity.Api
             builder.Services.AddDbContext<IdentityDbContext>(options =>
                   options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
+            builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
+            builder.Services.AddScoped<ITokenService, TokenService>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
