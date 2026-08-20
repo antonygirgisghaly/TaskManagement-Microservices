@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Identity.Infrastructure.Security
 {
-    internal class PasswordHasher : IPasswordHasher
+    public class PasswordHasher : IPasswordHasher
     {
         public string Hash(string password)
         {
