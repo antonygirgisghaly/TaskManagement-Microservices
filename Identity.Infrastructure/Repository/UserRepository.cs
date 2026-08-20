@@ -13,7 +13,10 @@ namespace Identity.Infrastructure.Repository
         }
 
         public async Task AddUserAsync(User user, CancellationToken cancellationToken = default)
-          => await _context.Users.AddAsync(user, cancellationToken);
+        { 
+            await _context.Users.AddAsync(user, cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
+        }
 
         public async Task<bool> ExistsUserByEmailAsync(string email, CancellationToken cancellationToken = default)
          => await _context.Users.AnyAsync(u => u.Email == email, cancellationToken);
