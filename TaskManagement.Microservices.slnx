@@ -1,0 +1,16 @@
+<Solution>
+  <Folder Name="/Src/" />
+  <Folder Name="/Src/Services/" />
+  <Folder Name="/Src/Services/Identity/">
+    <Project Path="Identity.Api/Identity.Api.csproj" />
+    <Project Path="Identity.Application/Identity.Application.csproj" />
+    <Project Path="Identity.Domain/Identity.Domain.csproj" />
+    <Project Path="Identity.Infrastructure/Identity.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Src/Services/Tasks/">
+    <Project Path="Tasks.Api/Tasks.Api.csproj" Id="eaad275c-647d-42e7-9161-ef7526837730" />
+    <Project Path="Tasks.Application/Tasks.Application.csproj" Id="491276ec-7ff4-4388-b557-71948abfc7ac" />
+    <Project Path="Tasks.Domain/Tasks.Domain.csproj" Id="67a572e0-3050-454a-a035-d3f2429bcd55" />
+    <Project Path="Tasks.Infrastructure/Tasks.Infrastructure.csproj" Id="7fd32ff7-4601-4d20-a2b1-9f37355ff064" />
+  </Folder>
+</Solution>
