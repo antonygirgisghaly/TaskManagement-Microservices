@@ -1,4 +1,9 @@
 
+using Microsoft.EntityFrameworkCore;
+using Tasks.Application.Interfaces;
+using Tasks.Infrastructure.Reposatories;
+using Tasks.Infrastructure.DbContexts;
+
 namespace Tasks.Api
 {
     public class Program
@@ -13,6 +18,10 @@ namespace Tasks.Api
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
 
+            builder.Services.AddDbContext<TasksDbContext>(options =>
+                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+            builder.Services.AddScoped<ITaskReposatory, TaskReposatoriey>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
