@@ -7,6 +7,12 @@
     <Project Path="Identity.Domain/Identity.Domain.csproj" />
     <Project Path="Identity.Infrastructure/Identity.Infrastructure.csproj" />
   </Folder>
+  <Folder Name="/Src/Services/Notfications/">
+    <Project Path="Notifications.Api/Notifications.Api.csproj" Id="5e7b6633-2dd6-4d8d-b6f5-ee23403a7dba" />
+    <Project Path="Notifications.Application/Notifications.Application.csproj" Id="66aacddb-92b9-40ee-a8b3-d361b4caa688" />
+    <Project Path="Notifications.Domain/Notifications.Domain.csproj" Id="8c338b93-3426-4368-be19-fcc6c72b4da7" />
+    <Project Path="Notifications.Infrastructure/Notifications.Infrastructure.csproj" Id="2119b3e4-ac6d-40a3-96c9-65376b980d54" />
+  </Folder>
   <Folder Name="/Src/Services/Tasks/">
     <Project Path="Tasks.Api/Tasks.Api.csproj" Id="eaad275c-647d-42e7-9161-ef7526837730" />
     <Project Path="Tasks.Application/Tasks.Application.csproj" Id="491276ec-7ff4-4388-b557-71948abfc7ac" />
