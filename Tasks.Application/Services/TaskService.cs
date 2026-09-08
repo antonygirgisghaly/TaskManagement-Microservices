@@ -12,9 +12,11 @@ namespace Tasks.Application.Services
     public class TaskService : ITaskService
     {
         private readonly ITaskReposatory _taskRepository;
-        public TaskService(ITaskReposatory taskReposatory)
+        private readonly INotificationClient _notificationClient;
+        public TaskService(ITaskReposatory taskReposatory, INotificationClient notificationClient)
         {
             _taskRepository = taskReposatory;
+            _notificationClient = notificationClient;
         }
         public async Task<Result<TaskResponseDto>> CreateAsync(CreateTaskRequestDto request, Guid userId, CancellationToken ct = default)
         {
@@ -31,6 +33,7 @@ namespace Tasks.Application.Services
                 DueDate = request.DueDate
             };
              await _taskRepository.AddAsync(task, ct);
+             await _notificationClient.NotifyAsync(userId, $"Task '{task.Title}' has been created.", ct);
             return Result<TaskResponseDto>.Success(new TaskResponseDto
             {
                 Id = task.Id,
@@ -103,6 +106,7 @@ namespace Tasks.Application.Services
 
             task.Status = request.Status;
             await _taskRepository.UpdateAsync(task,ct);
+            await _notificationClient.NotifyAsync(userId, $"Task '{task.Title}' status changed to {task.Status}.", ct);
             return Result<TaskResponseDto>.Success(new TaskResponseDto
             {
                 Id = task.Id,

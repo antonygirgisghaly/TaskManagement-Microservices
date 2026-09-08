@@ -8,6 +8,7 @@ using Tasks.Application.Interfaces;
 using Tasks.Application.Services;
 using Tasks.Application.Settings;
 using Tasks.Infrastructure.DbContexts;
+using Tasks.Infrastructure.ExternalServices;
 using Tasks.Infrastructure.Reposatories;
 namespace Tasks.Api
 {
@@ -52,6 +53,11 @@ namespace Tasks.Api
                     ValidAudience = jwtSettings.Audience,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SecretKey))
                 };
+            });
+            builder.Services.AddHttpClient<INotificationClient, NotificationClient>(client =>
+            {
+                client.BaseAddress = new Uri(builder.Configuration["NotificationsApi:BaseUrl"]!);
+                client.DefaultRequestHeaders.Add("X-Api-Key", builder.Configuration["NotificationsApi:ApiKey"]);
             });
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
